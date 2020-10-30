@@ -1,4 +1,4 @@
-package dto;
+package obj;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -6,12 +6,20 @@ import java.util.HashMap;
 public class RegionSanitaria {
 
 	private HashMap<String, Hospital> hospitales;
+	
+	
+
+	/**
+	 * 
+	 */
+	public RegionSanitaria() {
+		this.hospitales = new HashMap<String, Hospital>();
+	}
 
 	/**
 	 * @param hospitales
 	 */
 	public RegionSanitaria(HashMap<String, Hospital> hospitales) {
-		super();
 		this.hospitales = hospitales;
 	}
 
@@ -30,11 +38,13 @@ public class RegionSanitaria {
 	}
 	
 	
-	public void addHospital(String name, Datos d,Date fecha) {
+	public boolean addHospital(String name, Datos d,Date fecha) {
 		if(!hospitales.containsKey(name))
-			hospitales.put(name, new Hospital(null));
-		else
-			hospitales.get(name).addLog(fecha, d);
+			hospitales.put(name, new Hospital());
+		if(hospitales.get(name).addLog(fecha, d)) {
+				return true;
+		}
+		return false;
 	}
 	
 	

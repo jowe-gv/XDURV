@@ -1,4 +1,4 @@
-package dto;
+package obj;
 
 public class Datos {
 	
@@ -80,6 +80,8 @@ public class Datos {
 		return "Datos [lastPositives=" + lastPositives + ", newUCIRegisters=" + newUCIRegisters + ", deaths=" + deaths
 				+ ", UCIUnsuscribe=" + UCIUnsuscribe + "]";
 	}
+	
+	
 	
 	
 	

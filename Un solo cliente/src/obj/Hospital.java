@@ -1,4 +1,4 @@
-package dto;
+package obj;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -6,6 +6,16 @@ import java.util.HashMap;
 public class Hospital {
 	
 	private HashMap<Date, Datos> log;
+
+	
+	
+	
+	/**
+	 * 
+	 */
+	public Hospital() {
+		this.log = new HashMap<Date, Datos>();
+	}
 
 	/**
 	 * @param log
@@ -33,9 +43,12 @@ public class Hospital {
 	 * @param date
 	 * @param data
 	 */
-	public void addLog(Date date, Datos data) {
-		if(!log.containsKey(date))
+	public boolean addLog(Date date, Datos data) {
+		if(!log.containsKey(date)) {
 			log.put(date, data);
+			return true;
+		}
+		return false;
 	}
 	
 	public Datos getDatos(Date f) {
