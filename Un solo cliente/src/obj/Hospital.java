@@ -55,8 +55,6 @@ public class Hospital {
 		return log.get(f);
 	}
 	
-	//TODO HACER FUNCIONES QUE GESTIONEN ESCRITURA Y LECTURA DESDE FICHERO
 	
-	//TODO 
 
 }

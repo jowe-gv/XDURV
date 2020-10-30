@@ -37,7 +37,14 @@ public class RegionSanitaria {
 		this.hospitales = hospitales;
 	}
 	
-	
+	/**
+	 * Si existe el hospital intenta añadir los datos sino
+	 * crea una instancia y añade los datos
+	 * @param name: nombre del hospital
+	 * @param d: datos a introducir
+	 * @param fecha: fecha de los datos
+	 * @return
+	 */
 	public boolean addHospital(String name, Datos d,Date fecha) {
 		if(!hospitales.containsKey(name))
 			hospitales.put(name, new Hospital());
@@ -47,7 +54,12 @@ public class RegionSanitaria {
 		return false;
 	}
 	
-	
+	/**
+	 * Dada una fecha calcula las medias de los parametros de datos
+	 * de todos los hospitales
+	 * @param d fecha a observar
+	 * @return medias calculadas y dentro de un objeto Datos
+	 */
 	public Datos calcularMedias(Date d) {
 		Datos data = new Datos();
 		hospitales.forEach((k, v) -> {

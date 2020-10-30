@@ -85,6 +85,11 @@ public class TCPClientImpl implements Constants {
 		return GO_OUT;
 	}
 
+	/**
+	 * Genera el string que muestra los datos de las estadisticas
+	 * @param response: datos a mostrar
+	 * @return string a imprimir
+	 */
 	public String estadisticas(String response) {
 		String[] aux = response.split(DELIMITER);
 		String[] fecha = aux[1].split("-");
