@@ -58,16 +58,19 @@ public class TCPServerImpl implements Constants {
 	 * @param response: indica si la entrada realizada es correcta.
 	 * @param output: fichero del log.
 	 */
-	public void saveLogEntry(Date entryTime, String sanitaryRegionName, String clientSentence, String response, BufferedWriter output)
+	public void saveLogEntry(Date entryTime, String sanitaryRegionName, String clientSentence, String response)
 	{
-		LocalDateTime ahora= LocalDateTime.now();
-		if(response.equals(MESSAGE_ARRIVED)) {
-			try {
+		try {
+			BufferedWriter output= new BufferedWriter(new FileWriter(FILE_NAME, true));
+			LocalDateTime ahora= LocalDateTime.now();
+			if(response.equals(MESSAGE_ARRIVED)) {
 				output.append(ahora+";"+entryTime+";"+sanitaryRegionName+";"+clientSentence+"\n");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+			output.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	/**

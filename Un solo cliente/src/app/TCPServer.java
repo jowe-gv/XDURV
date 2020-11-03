@@ -37,15 +37,15 @@ class TCPServer implements Constants {
 			outToClient.writeBytes(MESSAGE_ARRIVED+"\n");
 			
 			//RECIBIMOS INFO DE HOSPITALES
-			BufferedWriter output= new BufferedWriter(new FileWriter(FILE_NAME, true));
+			
 			clientSentence = inFromClient.readLine();
 			while(!clientSentence.equals(FINAL_HOSPITALS)) {
 				response = impl.analyzeHospital(clientSentence,sanitaryRegionName,fecha,sanitaryRegions);
-				impl.saveLogEntry(fecha, sanitaryRegionName, clientSentence, response, output);
+				impl.saveLogEntry(fecha, sanitaryRegionName, clientSentence, response);
 				outToClient.writeBytes(response+"\n");
 				clientSentence = inFromClient.readLine();
 			}
-			output.close();
+			
 			
 			//ENVIAMOS DATOS
 			Datos d = sanitaryRegions.get(sanitaryRegionName).calcularMedias(fecha);
