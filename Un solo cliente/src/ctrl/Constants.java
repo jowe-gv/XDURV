@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface Constants {
 
+	// FICHEROS
+	public final String FILE_NAME="log.txt";
 	
 	//PARAMETROS ARBITRARIOS
 	public final int NUM_RS=100;

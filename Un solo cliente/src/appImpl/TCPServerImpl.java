@@ -1,8 +1,11 @@
 package appImpl;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
-
+import java.io.*;
 import ctrl.Constants;
 import obj.Datos;
 import obj.RegionSanitaria;
@@ -39,11 +42,34 @@ public class TCPServerImpl implements Constants {
 		if(sanitaryRegions.get(nameSR).addHospital(trozos[0], d, fecha))
 			aux = MESSAGE_ARRIVED;
 		else {
-			aux = DAY_INFO_EXISTS+"("+clientSentence+")";
+			aux = DAY_INFO_EXISTS;
 		}
 		return aux;
 	}
 	
+	/** 
+	 * Guarda la información de la entrada que ha hecho
+	 * el usuario sobre los datos del COVID-19 en un
+	 * hospital.
+	 * 
+	 * @param entryTime: tiempo que se realizo la entrada.
+	 * @param sanitaryRegionName: region sanitaria del hospital de la entrada.
+	 * @param clientSentence: contiene la información de la entrada realizada.
+	 * @param response: indica si la entrada realizada es correcta.
+	 * @param output: fichero del log.
+	 */
+	public void saveLogEntry(Date entryTime, String sanitaryRegionName, String clientSentence, String response, BufferedWriter output)
+	{
+		LocalDateTime ahora= LocalDateTime.now();
+		if(response.equals(MESSAGE_ARRIVED)) {
+			try {
+				output.append(ahora+";"+entryTime+";"+sanitaryRegionName+";"+clientSentence+"\n");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	/**
 	 * Dado el nombre de una nueva region sanitaria,
 	 * crea una nueva instancia
