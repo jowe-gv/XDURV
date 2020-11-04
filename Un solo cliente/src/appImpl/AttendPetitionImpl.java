@@ -61,7 +61,7 @@ public class AttendPetitionImpl implements Constants {
 	public void saveLogEntry(Date entryTime, String sanitaryRegionName, String clientSentence, String response)
 	{
 		try {
-			BufferedWriter output= new BufferedWriter(new FileWriter(FILE_NAME, true));
+			BufferedWriter output= new BufferedWriter(new FileWriter(RUTA+FILE_NAME_LOG, true));
 			LocalDateTime ahora= LocalDateTime.now();
 			if(response.equals(MESSAGE_ARRIVED)) {
 				output.append(ahora+";"+entryTime+";"+sanitaryRegionName+";"+clientSentence+"\n");

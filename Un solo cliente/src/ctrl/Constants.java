@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public interface Constants {
 
 	// FICHEROS
-	public final String FILE_NAME="log.txt";
-	
+	public final String FILE_NAME_LOG="log.txt";
+	public final String FILE_NAME_DATA="data.txt";	
 	//PARAMETROS ARBITRARIOS
 	public final int NUM_RS=100;
 	
@@ -38,6 +38,9 @@ public interface Constants {
 	public final String INI="IniConexion";
 	public final String EXIT="FinConexion";
 	
+	
+	
+	public final String RUTA="C:/Users/jimmy/Desktop/datos/";
 	// FORMATO INI NOMBRE;FECHA
 	// FORMATO HOSPITAL NOMBRE;NEWPOSITIVES;NEWUCIREGISTER;DEFUNCIONES;UCIUNREGISTER
 	

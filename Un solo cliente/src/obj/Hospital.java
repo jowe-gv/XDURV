@@ -1,9 +1,15 @@
 package obj;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Hospital {
+public class Hospital implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4347571737140142131L;
 	
 	private HashMap<Date, Datos> log;
 

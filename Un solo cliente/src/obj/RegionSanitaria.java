@@ -1,5 +1,6 @@
 package obj;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,8 +10,14 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-public class RegionSanitaria {
+public class RegionSanitaria implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2632175748538478159L;
+	
+	
 	private HashMap<String, Hospital> hospitales;
 	
 	

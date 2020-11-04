@@ -27,12 +27,10 @@ public class AttendPetition extends Thread implements Constants {
 	
 	public void run() {
 		AttendPetitionImpl impl= new AttendPetitionImpl();
+		TCPServerMTImpl i= new TCPServerMTImpl();
 		String clientSentence,response;
 		Date fecha;
 		String sanitaryRegionName="";
-		
-		
-		//HashMap<String, RegionSanitaria> sanitaryRegions = new HashMap<String, RegionSanitaria>();
 		 
 		try {
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
@@ -71,6 +69,7 @@ public class AttendPetition extends Thread implements Constants {
 		} catch (FinishProgramException e) {
 			System.out.println("EL USUARIO HA CANCELADO LA OPERACION");
 		} finally {
+			i.saveData(sanitaryRegions);
 			try {
 				connectionSocket.close();
 			} catch (IOException e) {

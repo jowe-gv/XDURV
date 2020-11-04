@@ -1,6 +1,14 @@
 package obj;
 
-public class Datos {
+import java.io.Serializable;
+
+public class Datos implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1095185842344130607L;
+	
 	
 	private float lastPositives;
 	private float newUCIRegisters;
