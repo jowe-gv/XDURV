@@ -7,7 +7,9 @@ import obj.RegionSanitaria;
 
 class TCPServerMultiThreading {
 	public static void main(String argv[]) throws Exception {
+		
 		HashMap<String, RegionSanitaria> sanitaryRegions = new HashMap<String, RegionSanitaria>();
+		
 		ServerSocket welcomeSocket = new ServerSocket(6789);
 
 		while (true) {

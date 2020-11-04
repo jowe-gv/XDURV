@@ -10,7 +10,7 @@ import ctrl.Constants;
 import obj.Datos;
 import obj.RegionSanitaria;
 
-public class TCPServerImpl implements Constants {
+public class AttendPetitionImpl implements Constants {
 
 
 	/**

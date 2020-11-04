@@ -5,7 +5,7 @@ import java.net.*;
 import java.sql.Date;
 import java.util.HashMap;
 
-import appImpl.TCPServerImpl;
+import appImpl.AttendPetitionImpl;
 import ctrl.Constants;
 import obj.Datos;
 import obj.RegionSanitaria;
@@ -21,7 +21,7 @@ class AttendPetition extends Thread implements Constants {
 	}
 	
 	public void run() {
-		TCPServerImpl impl= new TCPServerImpl();
+		AttendPetitionImpl impl= new AttendPetitionImpl();
 		String clientSentence,response;
 		Date fecha;
 		String sanitaryRegionName="";
