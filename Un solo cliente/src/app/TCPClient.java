@@ -3,6 +3,7 @@ package app;
 
 import java.io.*;
 import java.net.*;
+import java.sql.Date;
 
 import appImpl.TCPClientImpl;
 import ctrl.Constants;
@@ -13,6 +14,8 @@ class TCPClient implements Constants {
 	public static void main(String argv[]) throws Exception {
 		String sentence="";
 		String response="";
+		String regSan=String.valueOf(REGION_SANITARIA),hosp=HOSPITAL;
+		Date d;
 		Windows w = new Windows();
 		TCPClientImpl impl = new TCPClientImpl();
 		
@@ -37,7 +40,10 @@ class TCPClient implements Constants {
 					if(!sentence.equals(GO_OUT)) {
 						outToServer.writeBytes(sentence + "\n");
 						response = inFromServer.readLine();
-						System.out.println("FROM SERVER: " + response);
+						if(response.equals(DAY_INFO_EXISTS))
+							w.muestraError(response);
+						else
+							System.out.println("FROM SERVER: " + response);
 						sentence = w.seleccionaOpcion("Seleccione una opcion", new String[]{ADD_HOSPITAL,FINAL_HOSPITALS});
 					}
 				}
