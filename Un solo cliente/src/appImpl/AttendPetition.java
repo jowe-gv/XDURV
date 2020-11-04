@@ -1,16 +1,15 @@
-package app;
+package appImpl;
 
 import java.io.*;
 import java.net.*;
 import java.sql.Date;
 import java.util.HashMap;
 
-import appImpl.AttendPetitionImpl;
 import ctrl.Constants;
 import obj.Datos;
 import obj.RegionSanitaria;
 
-class AttendPetition extends Thread implements Constants {	
+public class AttendPetition extends Thread implements Constants {	
 	private Socket connectionSocket;
 	private HashMap<String, RegionSanitaria> sanitaryRegions; 
 	
