@@ -5,6 +5,7 @@ import java.net.*;
 import java.sql.Date;
 import java.util.HashMap;
 
+import Exceptions.FinishProgramException;
 import ctrl.Constants;
 import obj.Datos;
 import obj.RegionSanitaria;
@@ -37,8 +38,13 @@ public class AttendPetition extends Thread implements Constants {
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 			DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 			
+			//INICIALIZACION
+			clientSentence = inFromClient.readLine();
+			outToClient.writeBytes(MESSAGE_ARRIVED+"\n");
+			
 			//RECIBIMOS NOMBRE REGION SANITARIA Y FECHA
 			clientSentence = inFromClient.readLine();
+			if(clientSentence.equals(EXIT)) throw new FinishProgramException();
 			String[] aux = impl.analyzeIni(clientSentence);
 			sanitaryRegionName=aux[0];fecha=Date.valueOf(aux[1]);
 			impl.addSanitaryRegion(sanitaryRegionName,sanitaryRegions);
@@ -47,6 +53,7 @@ public class AttendPetition extends Thread implements Constants {
 			//RECIBIMOS INFO DE HOSPITALES
 			clientSentence = inFromClient.readLine();
 			while(!clientSentence.equals(FINAL_HOSPITALS)) {
+				if(clientSentence.equals(EXIT)) throw new FinishProgramException();
 				response = impl.analyzeHospital(clientSentence,sanitaryRegionName,fecha,sanitaryRegions);
 				impl.saveLogEntry(fecha, sanitaryRegionName, clientSentence, response);
 				outToClient.writeBytes(response+"\n");
@@ -61,7 +68,16 @@ public class AttendPetition extends Thread implements Constants {
 			System.out.println("EL TIEMPO DE ESPERA SE HA SUPERADO");
 		}catch (IOException e) {
 			System.out.println("ALGO HA FALLADO CON LA INICIALIZACION.");
-		} 
+		} catch (FinishProgramException e) {
+			System.out.println("EL USUARIO HA CANCELADO LA OPERACION");
+		} finally {
+			try {
+				connectionSocket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	

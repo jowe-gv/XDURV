@@ -35,7 +35,8 @@ public interface Constants {
 	public final String INVALID_DATE_MESSAGE = "Recuerde que el fomato de fecha es \"yyyy-[m]m-[d]d\" y los datos han de ser correctos ";
 	public final Integer[] DAYS_OF_MONTH = {31,29,31,30,31,30,31,31,30,31,30,31};
 	public final String ADD_HOSPITAL="Añade la info de un nuevo hospital.";
-	public final String GO_OUT="GoodBye";
+	public final String INI="IniConexion";
+	public final String EXIT="FinConexion";
 	
 	// FORMATO INI NOMBRE;FECHA
 	// FORMATO HOSPITAL NOMBRE;NEWPOSITIVES;NEWUCIREGISTER;DEFUNCIONES;UCIUNREGISTER

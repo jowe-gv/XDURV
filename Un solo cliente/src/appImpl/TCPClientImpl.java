@@ -1,5 +1,6 @@
 package appImpl;
 
+import Exceptions.FinishProgramException;
 import ctrl.Constants;
 import ctrl.Windows;
 
@@ -21,13 +22,14 @@ public class TCPClientImpl implements Constants {
 	 *Pide el id de la region sanitaria y la fecha de los datos
 	 *que se van a introducir
 	 * @return El string a enviar al servidor o GO_OUT en caso de salir
+	 * @throws FinishProgramException 
 	 */
-	public  String pideDatosIni() {
+	public  String pideDatosIni() throws FinishProgramException {
 		String[] numAndDate= new String[2];
 		String[] messages = {DEMAND_RS,DEMAND_DATE};
 		String response=INT_ERROR;
-		for (int i = 0; i < numAndDate.length && response!=GO_OUT; i++) {
-			while((response==INT_ERROR || response==DATE_ERROR) && response!=GO_OUT ) {
+		for (int i = 0; i < numAndDate.length && response!=EXIT; i++) {
+			while((response==INT_ERROR || response==DATE_ERROR) && response!=EXIT ) {
 				switch(i) {
 					case(0):response = w.pideEntero(messages[i], 0, NUM_RS);break;
 					case(1):response = w.pideFecha(messages[i]);break;
@@ -37,14 +39,14 @@ public class TCPClientImpl implements Constants {
 					case(DATE_ERROR):w.muestraError(INVALID_DATE_MESSAGE);break;
 				}
 			}
-			if(response!=GO_OUT) {
+			if(response!=EXIT) {
 				numAndDate[i] = response;
 				response = DATE_ERROR;
 			}
 		}
-		if(response!=GO_OUT)
+		if(response!=EXIT)
 			return formalizaIni(numAndDate);
-		return GO_OUT;
+		return EXIT;
 	}
 	
 	/**
@@ -64,25 +66,26 @@ public class TCPClientImpl implements Constants {
 	/**
 	 * Pide la informacion al usuario sobre un hospital
 	 * @return el mensaje para enviar al servidor o GO_OUT
+	 * @throws FinishProgramException 
 	 */
-	public String pideHospital() {
+	public String pideHospital() throws FinishProgramException {
 		String[] nameAndData= new String[5];
 		String[] messages = {DEMAND_HOSPITAL,DEMAND_NEW_POSITIVES,DEMAND_NEW_UCI_REGISTERS,DEMAND_DEATHS,DEMAND_UCI_UNREGISTERS};
 		String response=INT_ERROR;
-		for (int i = 0; i < nameAndData.length && response!=GO_OUT; i++) {
-			while(response==INT_ERROR && response!=GO_OUT ) {
+		for (int i = 0; i < nameAndData.length && response!=EXIT; i++) {
+			while(response==INT_ERROR && response!=EXIT ) {
 				response = w.pideEntero(messages[i],0,100000000);
 				if(response==INT_ERROR) 
 					w.muestraError(INT_ERROR);
 			}
-			if(response!=GO_OUT) {
+			if(response!=EXIT) {
 				nameAndData[i] = response;
 				response = INT_ERROR;
 			}
 		}
-		if(response!=GO_OUT)
+		if(response!=EXIT)
 			return formalizaHospital(nameAndData);
-		return GO_OUT;
+		return EXIT;
 	}
 
 	/**

@@ -1,7 +1,13 @@
 package obj;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 public class RegionSanitaria {
 
@@ -62,16 +68,34 @@ public class RegionSanitaria {
 	 */
 	public Datos calcularMedias(Date d) {
 		Datos data = new Datos();
-		hospitales.forEach((k, v) -> {
-           data.setDeaths(v.getDatos(d).getDeaths()+data.getDeaths());
-           data.setLastPositives(v.getDatos(d).getLastPositives()+data.getLastPositives());
-           data.setNewUCIRegisters(v.getDatos(d).getNewUCIRegisters()+data.getNewUCIRegisters());
-           data.setUCIUnsuscribe(v.getDatos(d).getUCIUnsuscribe()+data.getUCIUnsuscribe());
-        });
-		data.setDeaths(data.getDeaths()/hospitales.size());
-		data.setLastPositives(data.getLastPositives()/hospitales.size());
-		data.setNewUCIRegisters(data.getNewUCIRegisters()/hospitales.size());
-		data.setUCIUnsuscribe(data.getUCIUnsuscribe()/hospitales.size());
+		List<String> hospitals = hospitalesWithDatosAtDate(d);
+		if(hospitals.size()>0) {
+			for(String name: hospitals) {
+		       data.setDeaths(hospitales.get(name).getDatos(d).getDeaths()+data.getDeaths());
+		       data.setLastPositives(hospitales.get(name).getDatos(d).getLastPositives()+data.getLastPositives());
+		       data.setNewUCIRegisters(hospitales.get(name).getDatos(d).getNewUCIRegisters()+data.getNewUCIRegisters());
+		       data.setUCIUnsuscribe(hospitales.get(name).getDatos(d).getUCIUnsuscribe()+data.getUCIUnsuscribe());
+			}
+			data.setDeaths(data.getDeaths()/hospitales.size());
+			data.setLastPositives(data.getLastPositives()/hospitales.size());
+			data.setNewUCIRegisters(data.getNewUCIRegisters()/hospitales.size());
+			data.setUCIUnsuscribe(data.getUCIUnsuscribe()/hospitales.size());
+		}
 		return data;
+	}
+	
+	/**
+	 * Comprueba que hospitales tienen datos el dia indicado por
+	 * parametro y devuelve una lista con los nombres
+	 * @param d: fecha a mirar
+	 * @return arraylist de nombres de hospitales
+	 */
+	public List<String> hospitalesWithDatosAtDate(Date d) {
+		List<String> hospitals = new ArrayList<String>();
+		for (Map.Entry<String, Hospital> entry : hospitales.entrySet()) {
+			if(entry.getValue().dayHasData(d))
+				hospitals.add(entry.getKey());
+		}
+		return hospitals;
 	}
 }

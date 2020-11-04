@@ -51,10 +51,25 @@ public class Hospital {
 		return false;
 	}
 	
+	/**
+	 * Dada una fecha devuelve sus datos
+	 * @param f: fecha mirar
+	 * @return la datos del hospital a esa fecha
+	 */
 	public Datos getDatos(Date f) {
 		return log.get(f);
 	}
 	
+	/**
+	 * Dada una fecha dice si existen datos ese dia o no
+	 * @param d: fecha a mirar
+	 * @return cierto si tiene datos y falso si no
+	 */
+	public boolean dayHasData(Date d) {
+		if(log.containsKey(d))
+			return true;
+		return false;
+	}
 	
 
 }

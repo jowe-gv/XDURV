@@ -7,13 +7,14 @@ public class Datos {
 	private float deaths;
 	private float UCIUnsuscribe;
 	
-	
-	
-	
 	/**
 	 * 
 	 */
 	public Datos() {
+		this.lastPositives=0;
+		this.deaths=0;
+		this.newUCIRegisters=0;
+		this.UCIUnsuscribe=0;
 	}
 	/**
 	 * @param lastPositives

@@ -1,6 +1,8 @@
 package ctrl;
 
 import javax.swing.JOptionPane;
+
+import Exceptions.FinishProgramException;
 public class Windows implements Constants{
 	
 	private TypeCtrl ctrl= new TypeCtrl();
@@ -31,12 +33,13 @@ public class Windows implements Constants{
 	 * @param message:mensaje a mostrar
 	 * @param options: opciones a escoger
 	 * @return la opcion escogida o GO_OUT en caso de cancelar
+	 * @throws FinishProgramException 
 	 */
-	public String seleccionaOpcion(String message,String[] options) {
+	public String seleccionaOpcion(String message,String[] options) throws FinishProgramException {
 		String s = String.valueOf(JOptionPane.showInputDialog(null,message,"COVID",JOptionPane.QUESTION_MESSAGE,null,options,options[0]));
-		if(s!=null)
+		if(!s.equals("null"))
 			return s;
-		return GO_OUT;
+		throw new FinishProgramException();
 	}
 	
 	
@@ -45,12 +48,13 @@ public class Windows implements Constants{
 	 * Genera una ventana que pide un string
 	 * @param message: frase que escribira la ventana
 	 * @return string escrito por el usuario
+	 * @throws FinishProgramException 
 	 */
-	public String pideString(String message) {
+	public String pideString(String message) throws FinishProgramException {
 		String s = JOptionPane.showInputDialog(null,message,"COVID",JOptionPane.QUESTION_MESSAGE);
-		if(s==null) 
-			return GO_OUT;
-		return s;
+		if(s!=null) 
+			return s;
+		throw new FinishProgramException();
 	}
 	
 	/**
@@ -59,11 +63,12 @@ public class Windows implements Constants{
 	 * un INT_ERROR
 	 * @param message: frase que escribira la ventana
 	 * @return entero o INT_ERROR
+	 * @throws FinishProgramException 
 	 */
-	public String pideEntero(String message) {
+	public String pideEntero(String message) throws FinishProgramException {
 		String s = JOptionPane.showInputDialog(message);
 		if(s==null) 
-			return GO_OUT;
+			throw new FinishProgramException();
 		if(ctrl.isInteger(s)) {
 			return s;
 		}
@@ -79,11 +84,12 @@ public class Windows implements Constants{
 	 * @param min: rango minimo (no inlcuido)
 	 * @param max: rango maximo (incluido)
 	 * @return el entero o INT_ERROR
+	 * @throws FinishProgramException 
 	 */
-	public String pideEntero(String message,int min, int max) {
+	public String pideEntero(String message,int min, int max) throws FinishProgramException {
 		String s = JOptionPane.showInputDialog(null,message,"COVID",JOptionPane.QUESTION_MESSAGE);
 		if(s==null) 
-			return GO_OUT;
+			throw new FinishProgramException();
 		if(ctrl.isInteger(s)) {
 			int num = Integer.valueOf(s);
 			if(ctrl.isInRange(num, min, max))
@@ -98,11 +104,12 @@ public class Windows implements Constants{
 	 * valida.
 	 * @param message: frase que escribira la ventana
 	 * @return la fecha o DATE_ERROR
+	 * @throws FinishProgramException 
 	 */
-	public String pideFecha(String message) {
+	public String pideFecha(String message) throws FinishProgramException {
 		String s = JOptionPane.showInputDialog(null,message,"COVID",JOptionPane.QUESTION_MESSAGE);
 		if(s==null) 
-			return GO_OUT;
+			throw new FinishProgramException();
 		if(ctrl.isDate(s)) {
 			return s;
 		}
