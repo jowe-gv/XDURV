@@ -16,7 +16,7 @@ class TCPServerMultiThreading {
 		
 		while (true) {
 			Socket connectionSocket = welcomeSocket.accept();
-			new AttendPetition(connectionSocket,sanitaryRegions).start();
+			new AttendPetition(connectionSocket,sanitaryRegions).start();//LANZAMOS THREAD
 		}
 	}
 }
