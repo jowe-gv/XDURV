@@ -1,8 +1,8 @@
 package appImpl;
 
-import Exceptions.FinishProgramException;
 import ctrl.Constants;
 import ctrl.Windows;
+import exceptions.FinishProgramException;
 
 public class TCPClientImpl implements Constants {
 

@@ -5,8 +5,8 @@ import java.net.*;
 import java.sql.Date;
 import java.util.HashMap;
 
-import Exceptions.FinishProgramException;
 import ctrl.Constants;
+import exceptions.FinishProgramException;
 import obj.Datos;
 import obj.RegionSanitaria;
 

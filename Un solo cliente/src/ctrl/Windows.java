@@ -2,7 +2,7 @@ package ctrl;
 
 import javax.swing.JOptionPane;
 
-import Exceptions.FinishProgramException;
+import exceptions.FinishProgramException;
 public class Windows implements Constants{
 	
 	private TypeCtrl ctrl= new TypeCtrl();

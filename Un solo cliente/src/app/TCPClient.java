@@ -5,10 +5,10 @@ import java.io.*;
 import java.net.*;
 import java.sql.Date;
 
-import Exceptions.FinishProgramException;
 import appImpl.TCPClientImpl;
 import ctrl.Constants;
 import ctrl.Windows;
+import exceptions.FinishProgramException;
 
 class TCPClient implements Constants {
 	
