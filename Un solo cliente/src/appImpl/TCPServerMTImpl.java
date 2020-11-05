@@ -21,7 +21,7 @@ public class TCPServerMTImpl implements Constants {
 	         out.writeObject(e);
 	         out.close();
 	         fileOut.close();
-	         System.out.printf("Serialized data is saved in" + RUTA+FILE_NAME_DATA);
+	         System.out.println("Serialized data is saved in" + RUTA+FILE_NAME_DATA);
 	      } catch (IOException i) {
 	         i.printStackTrace();
 	      }
