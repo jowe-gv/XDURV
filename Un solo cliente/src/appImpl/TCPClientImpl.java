@@ -5,6 +5,7 @@ import ctrl.Windows;
 import exceptions.FinishProgramException;
 
 public class TCPClientImpl implements Constants {
+	
 
 	public static Windows w = new Windows();
 	/**

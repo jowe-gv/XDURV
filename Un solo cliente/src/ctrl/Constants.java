@@ -1,6 +1,5 @@
 package ctrl;
 
-import java.util.ArrayList;
 
 public interface Constants {
 

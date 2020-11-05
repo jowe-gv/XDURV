@@ -3,7 +3,6 @@ package app;
 
 import java.io.*;
 import java.net.*;
-import java.sql.Date;
 
 import appImpl.TCPClientImpl;
 import ctrl.Constants;
@@ -15,14 +14,12 @@ class TCPClient implements Constants {
 	public static void main(String argv[]) throws Exception {
 		String sentence="";
 		String response="";
-		String regSan=String.valueOf(REGION_SANITARIA),hosp=HOSPITAL;
-		Date d;
 		Windows w = new Windows();
 		TCPClientImpl impl = new TCPClientImpl();
 		
-		//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-		Socket clientSocket = new Socket("localhost", 6789);
-		clientSocket.setSoTimeout(10*1000);
+		
+		Socket clientSocket = new Socket("localhost", 6789);//CONECTA CON SERVIDOR A 127.0.0.1:6789
+		clientSocket.setSoTimeout(10*1000);//ESTABLECE UN TIMEOUT DE 10 SEGUNDOS
 		
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

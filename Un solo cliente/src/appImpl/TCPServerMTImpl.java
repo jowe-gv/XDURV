@@ -1,7 +1,6 @@
 package appImpl;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,6 +12,11 @@ import obj.RegionSanitaria;
 
 public class TCPServerMTImpl implements Constants {
 	
+	/**
+	 * Guarda en un fichero el hashmap que contiene
+	 * toda la informacion de las regiones sanitarias
+	 * @param e hasmap a guardar
+	 */
 	public void saveData(HashMap<String,RegionSanitaria> e) {
 		try {
 	         FileOutputStream fileOut =
@@ -27,6 +31,11 @@ public class TCPServerMTImpl implements Constants {
 	      }
 	}
 	
+	/**
+	 * Carga de un fichero un hashmap de forma serializada
+	 * @return un hashmap 
+	 */
+	@SuppressWarnings("unchecked")
 	public HashMap<String,RegionSanitaria> loadData(){
 		
 		HashMap<String,RegionSanitaria> e = new HashMap<String, RegionSanitaria>();

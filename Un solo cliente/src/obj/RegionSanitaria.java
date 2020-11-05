@@ -3,11 +3,8 @@ package obj;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 public class RegionSanitaria implements Serializable {
